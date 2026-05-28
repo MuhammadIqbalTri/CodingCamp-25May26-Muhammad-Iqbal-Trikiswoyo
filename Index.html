@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Expense & Budget Visualizer</title>
+</head>
+<body>
+    <header>
+            <h1>Expenses & Budget Visualizer</h1>
+    </header>
+    <button id="theme-toggle" class="add">🌙 Dark Mode</button>
+
+    <main>
+        <section class="display">
+            <h2>TOTAL BALANCE</h2>
+            <h3 id="total-balance">Rp. 0</h3>
+            <div id="edit-balance-wrapper">
+                <button id="edit-balance-btn" class="add">Edit Balance</button>
+                <input type="number" id="edit-balance-input" placeholder="Set base balance (Rp)">
+                <button id="confirm-balance-btn" class="add">Confirm</button>
+            </div>
+        </section>
+        <section class="form">
+            <form id="transaction-form">
+                <h2>Add Transaction</h2>
+                    <label for="item-name">Item name</label><br>
+                    <input type="text" id="item-name" name="item-name" placeholder="Masukkan nama item"><br>
+                    <label for="Amount">Amount (Rp) </label><br>
+                    <input type="number" id="Amount" name="Amount" placeholder="Masukkan harga"><br>
+                    <label for="category">Category</label><br>
+                    <select name="category" id="category">
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="fun">Fun</option>
+                        <option value="__add_custom__">+ Add Custom Category...</option>
+                    </select>
+                    <div id="custom-category-wrapper">
+                        <input type="text" id="custom-category-input" placeholder="Nama kategori baru">
+                        <button type="button" id="save-custom-category" class="add" style="margin-top: 1vh;">SAVE CATEGORY</button>
+                    </div>
+                    <button type="submit" class="add">ADD TRANSACTION</button>
+            </form>
+        </section>
+        <section id="budget-section">
+            <h2>Budget Limits</h2>
+            <div id="budget-list"></div>
+            <div id="budget-add-row">
+                <select id="budget-category-select">
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="fun">Fun</option>
+                </select>
+                <input type="number" id="budget-amount-input" placeholder="Limit (Rp)">
+                <button id="budget-save-btn" class="add">Set Limit</button>
+            </div>
+        </section>
+        <section id="data">
+            <article id="transaction">
+                <div id="transaction-header">
+                    <h2>Transactions</h2>
+                    <div id="sort-wrapper">
+                        <button id="sort-toggle-btn">⇅</button>
+                    </div>
+                </div>
+                <input type="text" id="search-input" placeholder="Search transactions...">
+                <div id="transaction-list"></div>
+                <button id="clear-all-btn" class="delete-btn" style="margin-top: 2vh; width: 100%;">Clear All Transactions</button>
+            </article>
+            <!-- Sort menu lives outside #transaction to avoid overflow clipping -->
+            <div id="sort-menu">
+                <div class="sort-section">
+                    <strong>Amount</strong>
+                    <label><input type="radio" name="amount-sort" value="none" checked> None</label>
+                    <label><input type="radio" name="amount-sort" value="asc"> Low → High</label>
+                    <label><input type="radio" name="amount-sort" value="desc"> High → Low</label>
+                </div>
+                <div class="sort-section">
+                    <strong>Category</strong>
+                    <div id="category-filter-list"></div>
+                </div>
+            </div>
+            <article id="spending-by-category">
+                <h2>Spending by Category</h2>
+                <canvas id="spending-chart"></canvas>
+            </article>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
