@@ -3,7 +3,7 @@ const themeToggle = document.getElementById('theme-toggle');
 
 function applyTheme(theme) {
     document.body.setAttribute('data-theme', theme);
-    themeToggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
 // Load saved preference
